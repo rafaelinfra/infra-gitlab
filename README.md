@@ -1,4 +1,4 @@
-# Guia de Instalação do GitLab Server no Ubuntu 22.04 no Azure
+# Guia de Instalação do GitLab Server no Ubuntu 22.04
 
 ## 1. Atualizar o Sistema
 
