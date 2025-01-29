@@ -111,7 +111,7 @@ Acesse no navegador:
 https://gitlab.seudominio.com
 ```
 
-Se precisar de mais ajuda, verifique os logs:
+verifique os logs:
 
 ```bash
 sudo gitlab-ctl tail
