@@ -1,0 +1,32 @@
+version: '3.6'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:10443'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        letsencrypt['enable'] = false
+        gitlab_rails['omniauth_enabled'] = true
+        gitlab_rails['omniauth_allow_single_sign_on'] = ['azure_activedirectory_v2']
+        gitlab_rails['omniauth_block_auto_created_users'] = false
+        gitlab_rails['omniauth_providers'] = [
+        {
+            "name" => "azure_activedirectory_v2",
+            label: "Azure AD v2",
+            args: {
+              "client_id" => "",
+              "client_secret" => "",
+              "tenant_id" => "",
+            }
+        }
+        ]
+    ports:
+      - '10443:10443'
+      - '2224:22'
+    volumes:
+      - '$PWD/config:/etc/gitlab'
+      - '$PWD/logs:/var/log/gitlab'
+      - '$PWD/data:/var/opt/gitlab'
+    shm_size: '256m'
